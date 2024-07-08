@@ -1,9 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SceneManager : MonoBehaviour
 {
+    internal static object GetActiveScene()
+    {
+        throw new NotImplementedException();
+    }
+
+    internal static void LoadScene(object buildIndex)
+    {
+        
+    }
+
+    internal static void LoadScene(object v1, int v2)
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {

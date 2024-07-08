@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
+    private static GameManager instance;
     private InputController player;
     public UnityEvent OnLevelStart = new UnityEvent();
     public UnityEvent OnAction = new UnityEvent();
@@ -37,6 +38,18 @@ public class GameManager : MonoBehaviour
     {
         OnLevelEnds?.Invoke();
     }
+
+    public static GameManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<GameManager>();
+            }
+            return instance;
+        }
+    }
     public void PlayerDied()
     {
 
@@ -49,4 +62,8 @@ public class GameManager : MonoBehaviour
     {
         player.enabled = true;
     }
+
+    public void RestartGame() =>
+        // Reset game state, reload scene, etc.
+        SceneManager.LoadScene(SceneManager.GetActiveScene(),0);
 }
