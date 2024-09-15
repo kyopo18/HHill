@@ -9,6 +9,7 @@ public class KeyOpen : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            SoundManager.Instance.PlayPickupSound(transform.position, 3);
             other.gameObject.GetComponent<KeyInventory>()?.AddKey(keyColor);
             //gameObject.SetActive(false);
             Destroy(gameObject);

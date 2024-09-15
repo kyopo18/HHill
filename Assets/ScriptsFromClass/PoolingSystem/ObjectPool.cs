@@ -32,7 +32,7 @@ public class ObjectPool : MonoBehaviour
     }
 
     // retrieves the actual gameobject
-    public PooledObject RetrieveAvailableItem()
+    public PooledObject RetrieveAvailableItem(int index = 0)
     {
         if(availableObjects.Count == 0)
         {
@@ -41,6 +41,7 @@ public class ObjectPool : MonoBehaviour
 
         // available object is the first object marked 0
         PooledObject tempObject = availableObjects[0];
+        tempObject.Initialize(index);
         // removes the first 0 object from the pool.
         availableObjects.RemoveAt(0);
         tempObject.gameObject.SetActive(true);

@@ -10,8 +10,29 @@ public class CutSceneManager1 : MonoBehaviour
     [SerializeField] private PlayableDirector director;
     void Start()
     {
-        //switch
-        GameManager.Singleton.OnLevelStart.AddListener(StartCutScene);
+        switch(startType)
+        {
+            case CutsceneStartType.OnLevelStart : GameManager.Singleton.OnLevelStart.AddListener(StartCutScene);
+            
+                break;
+
+            case CutsceneStartType.OnLevelFinish:
+                GameManager.Singleton.OnLevelFinish.AddListener(StartCutScene);
+
+                break;
+
+            case CutsceneStartType.OnDoorOpen:
+                GameManager.Singleton.OnDoorOpen.AddListener(StartCutScene);
+
+                break;
+
+            case CutsceneStartType.OnDie:
+                GameManager.Singleton.OnDie.AddListener(StartCutScene);
+
+                break;
+
+        }
+
     }
 
     public void StartCutScene()
@@ -23,10 +44,20 @@ public class CutSceneManager1 : MonoBehaviour
     {
         GameManager.Singleton.UnlockPlayerInput();
         GameManager.Singleton.OnLevelStart.RemoveListener(StartCutScene);
+        GameManager.Singleton.OnLevelFinish.RemoveListener(StartCutScene);
+        GameManager.Singleton.OnDoorOpen.RemoveListener(StartCutScene);
+        GameManager.Singleton.OnDie.RemoveListener(StartCutScene);
+
+        if (startType == CutsceneStartType.OnDie)
+        {
+            Debug.Log("IM IS WORKING NOW");
+            GameManager.Singleton.RestartGame();
+        }
+
         Destroy(gameObject);
     }
 }
 public enum CutsceneStartType
 {
-    OnLevelStart, OnLevelFinish
+    OnLevelStart, OnLevelFinish, OnDoorOpen, OnDie
 }

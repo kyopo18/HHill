@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ShootingModule : MonoBehaviour
 {
+    [SerializeField] int indexType;
+    [SerializeField] private float shootingForce = 50f;
     [SerializeField] private ObjectPool pool;
     [Header("Shooting")]
     [SerializeField] private Rigidbody projectile;
@@ -13,10 +15,11 @@ public class ShootingModule : MonoBehaviour
 
     public void Shoot()
     {
+        SoundManager.Instance.PlayShootSound(transform.position, indexType);
         //pressing the left click fires a projectile prefab
-        if (Input.GetMouseButtonDown(0))
+        //if (Input.GetMouseButtonDown(0))
         {
-            PooledObject tempPooled = pool.RetrieveAvailableItem();
+            PooledObject tempPooled = pool.RetrieveAvailableItem(indexType);
             //Create Projectile ...Stored GameObject named as a parameter = to an instantiated bullet with transform and rotation
             Rigidbody bulletInstantiated = tempPooled.rigidBody;// Instantiate(projectile, shootingPoint.position, shootingPoint.rotation);
             // called the rigidbody game object that is stored and the Rigidbody of it. Rigid body is for physics.
@@ -30,7 +33,7 @@ public class ShootingModule : MonoBehaviour
             // camera.transform.forward shoots from the camera instead.
             bulletInstantiated.position = shootingPoint.position;
             bulletInstantiated.rotation = shootingPoint.rotation;
-            bulletInstantiated.AddForce(50f * cam.transform.forward, /*shootingPoint.forward,*/ ForceMode.Impulse);
+            bulletInstantiated.AddForce(shootingForce * cam.transform.forward, /*shootingPoint.forward,*/ ForceMode.Impulse);
             //Destroys the instantiated bullet after 5 seconds. "5f" clears memory.
             //Destroy(bulletInstantiated.gameObject, 5f);
             tempPooled.ResetBackToPool(5f);

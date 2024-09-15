@@ -6,10 +6,12 @@ using UnityEngine;
 // and send to our module
 public class InputController : MonoBehaviour //06/07/24 friday REFACTORED
 {
+    [SerializeField] private AmmoStorage ammoStorage;
     [SerializeField] private Camera cam;
     [SerializeField] private float mouseSensitivity;
 
     [Header("Modules")]
+    [SerializeField] private ShootingModule grenadeShootingModule;
     [SerializeField] private ShootingModule shootingModule;
     [SerializeField] private InteractModule interactModule;
     [SerializeField] private MovementModule walkingModule;
@@ -49,7 +51,18 @@ public class InputController : MonoBehaviour //06/07/24 friday REFACTORED
 
         if (shootingModule != null && Input.GetMouseButtonDown(0))
         {
-            shootingModule.Shoot();
+            if (ammoStorage.checkAmmo())
+            {
+                shootingModule.Shoot();
+            }
+        }
+
+        if (grenadeShootingModule != null && Input.GetMouseButtonDown(1))
+        {
+            if (ammoStorage.checkGrenades())
+            {
+                grenadeShootingModule.Shoot();
+            }
         }
 
         if (interactModule != null && Input.GetKeyDown(KeyCode.E))

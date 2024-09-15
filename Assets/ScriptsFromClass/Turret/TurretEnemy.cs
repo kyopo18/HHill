@@ -77,6 +77,7 @@ public class TurretEnemy : MonoBehaviour
 
     private void Fire()
     {
+        SoundManager.Instance.PlayShootSound(transform.position);
         GameObject turretBulletGO = (GameObject)Instantiate(turretBulletPrefab, turretFirePoint.position, turretFirePoint.rotation);
         TurretBullet turretBullet = turretBulletGO.GetComponent<TurretBullet>();
         //Debug.Log("Fire");

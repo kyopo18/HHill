@@ -8,7 +8,7 @@ public class MovementModule : MonoBehaviour
     [SerializeField] CharacterController controller;
     [SerializeField] private Transform headUpDown;
     [SerializeField] private float movementSpeed;
-    private Vector3 moveDirection;
+    private Vector3 moveDirection = new Vector3(0,0,0);
     private Vector3 aimDirection;
     private bool canlookWithMouse;
 

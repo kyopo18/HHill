@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,7 +10,9 @@ public class GameManager : MonoBehaviour
     private InputController player;
     public UnityEvent OnLevelStart = new UnityEvent();
     public UnityEvent OnAction = new UnityEvent();
-    public UnityEvent OnLevelEnds = new UnityEvent();
+    public UnityEvent OnLevelFinish = new UnityEvent();
+    public UnityEvent OnDie = new UnityEvent();
+    public UnityEvent OnDoorOpen = new UnityEvent();
     public static GameManager Singleton { get; private set; }
     private void Awake()
     {
@@ -36,7 +39,17 @@ public class GameManager : MonoBehaviour
     }
     public void FinishLevel()
     {
-        OnLevelEnds?.Invoke();
+        OnLevelFinish?.Invoke();
+    }
+
+    public void DoorOpen()
+    {
+        OnDoorOpen?.Invoke();
+    }
+
+    public void PlayerDie()
+    {
+        OnDie?.Invoke();
     }
 
     public static GameManager Instance
@@ -50,7 +63,8 @@ public class GameManager : MonoBehaviour
             return instance;
         }
     }
-    public void PlayerDied()
+
+    public void PlayerRespawn()
     {
 
     }
@@ -63,7 +77,10 @@ public class GameManager : MonoBehaviour
         player.enabled = true;
     }
 
-    public void RestartGame() =>
+    public void RestartGame()
+
+    {
         // Reset game state, reload scene, etc.
-        SceneManager.LoadScene(SceneManager.GetActiveScene(),0);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+    }
 }

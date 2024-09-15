@@ -8,7 +8,7 @@ public class OnDieModule : MonoBehaviour
     
     void Start()
     {
-        healthModule.OnDie += OnDie; 
+        healthModule.OnDie.AddListener(OnDie); 
     }
 
     private void OnDie()

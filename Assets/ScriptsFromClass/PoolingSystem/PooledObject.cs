@@ -4,18 +4,25 @@ using UnityEngine;
 
 public class PooledObject : MonoBehaviour
 {
+    [SerializeField] int indexType;
     public Rigidbody rigidBody;
     private ObjectPool poolOwner;
     private float timerToReset;
     private bool resetting;
+
+    public void Initialize(int index)
+    {
+        indexType = index;
+    }
 
     public void LinkToPool(ObjectPool owner)
     {
         poolOwner = owner;
     }
 
-    public void ResetBackToPool()
+    public virtual void ResetBackToPool()
     {
+        Debug.Log("ResetBackTOPool");
         rigidBody.velocity = Vector3.zero;
         resetting = false;
         poolOwner.ResetBullet(this);
@@ -46,6 +53,7 @@ public class PooledObject : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        SoundManager.Instance.PlayHitSound(transform.position, indexType);
         Debug.Log("I hit something!I hit! I hit!");
         if (collision.gameObject.CompareTag("Enemy"))
         {
