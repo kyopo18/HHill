@@ -9,6 +9,7 @@ using UnityEngine;
         [SerializeField] List<AudioClip> HitSound;
         [SerializeField] List<AudioClip> PickupSound;
         [SerializeField] List<AudioClip> DieSound;
+        [SerializeField] List<AudioClip> HackSound;
         
 
         AudioSource audioSource;
@@ -57,6 +58,11 @@ using UnityEngine;
         {
 
             AudioSource.PlayClipAtPoint(sound, pos);
+        }
+
+        public void PlayHackSound(Vector3 pos, int index = 0)
+        {
+            PlaySound(HackSound[index], pos);
         }
 
     }

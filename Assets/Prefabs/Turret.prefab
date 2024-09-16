@@ -215,9 +215,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 413d98cfb34e05f479f116493385eedc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 15
+  range: 35
+  fireRate: 1
   playerTag: Player
   partToRotate: {fileID: 0}
+  turnSpeed: 10
+  turretBulletPrefab: {fileID: 0}
+  turretFirePoint: {fileID: 0}
 --- !u!1 &9194560700936747176
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,6 +28,7 @@ public class KeySlot : MonoBehaviour , IInteractable
             {
                 onUnlock.Invoke((int)requiredKey);
                 Instantiate(keyOpenPrefab, KeyHolder);
+                SoundManager.Instance.PlayHackSound(transform.position, 0);
             }
         }
         

@@ -7,7 +7,7 @@ public class TurretCast : MonoBehaviour
 {
     [SerializeField] private AITurretController myController;
     [SerializeField] private Transform laserStart;
-    [SerializeField] private float laserRange = 2f;
+    [SerializeField] private float laserRange = 100f;
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private LayerMask everythingElseMask;
     [SerializeField] private LineRenderer laserLine;

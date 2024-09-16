@@ -80,6 +80,7 @@ public class RPSPuzzle : MonoBehaviour
         else if (previousOutcome == Outcome.LS)
         {
             OnPlayerWins.Invoke();
+            SoundManager.Instance.PlayHackSound(transform.position, 0);
             Debug.Log("Player won open door!");
         }
 

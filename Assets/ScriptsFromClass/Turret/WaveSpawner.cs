@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 
 public class WaveSpawner : MonoBehaviour
 {
+    [SerializeField] int maxSpawnWaves = 10;
     [SerializeField] List<Transform> newPath = new List<Transform>();
     public AIController turretEnemyPrefab;
 
@@ -24,8 +25,14 @@ public class WaveSpawner : MonoBehaviour
     private int waveIndex = 0;
     private void Update()
     {
+        if(maxSpawnWaves <= 0)
+        {
+            return;
+        }
+
         if (countdown <= 0f)
         {
+            maxSpawnWaves--;
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
         }

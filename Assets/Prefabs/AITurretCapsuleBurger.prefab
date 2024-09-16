@@ -13,6 +13,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 353343915453041931, guid: c7a1279323cdca842bb92f82db06bd12,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1d0c0bac13326d14a8fb5fda102ea2f7, type: 2}
     - target: {fileID: 409801415075319757, guid: c7a1279323cdca842bb92f82db06bd12,
         type: 3}
       propertyPath: m_Layer
@@ -170,6 +175,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 20
+  OnDie:
+    m_PersistentCalls:
+      m_Calls: []
+  health: 100
 --- !u!114 &3769380383404003946
 MonoBehaviour:
   m_ObjectHideFlags: 0
