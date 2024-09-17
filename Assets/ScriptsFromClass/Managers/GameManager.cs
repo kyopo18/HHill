@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     }
     public void FinishLevel()
     {
+        player = FindObjectOfType<InputController>();
         OnLevelFinish?.Invoke();
     }
 
